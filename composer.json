@@ -1,0 +1,31 @@
+{
+    "name": "symsensor/actuator-mailer-bundle",
+    "description": "Extension for the ActuatorBundle which provides health checking capabilities for the symfony mailer component.",
+    "keywords": [ "actuator" ],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "symfony/framework-bundle": "^6.0",
+        "symsensor/actuator-bundle": "^1.0.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.22",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-symfony": "^1.1",
+        "phpstan/phpstan-phpunit": "^1.1",
+        "phpunit/phpunit": "^10.3",
+        "mikey179/vfsstream": "^1.6",
+        "symfony/browser-kit": "^6.0",
+        "symfony/yaml": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SymSensor\\ActuatorMailerBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SymSensor\\ActuatorMailerBundle\\Tests\\": "tests/"
+        }
+    }
+}
