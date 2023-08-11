@@ -22,6 +22,22 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('sym_sensor_actuator_mailer');
 
+        $rootNode = $treeBuilder->getRootNode();
+
+        $rootNode // @phpstan-ignore-line
+            ->canBeDisabled()
+            ->children()
+                ->arrayNode('transports')
+                    ->useAttributeAsKey('name')
+                    ->defaultValue(['default' => ['service' => 'mailer.default_transport']])
+                    ->arrayPrototype()
+                        ->children()
+                            ->scalarNode('service')->isRequired()->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
+
         return $treeBuilder;
     }
 }

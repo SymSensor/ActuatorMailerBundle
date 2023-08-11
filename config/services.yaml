@@ -1,0 +1,19 @@
+services:
+  SymSensor\ActuatorMailerBundle\Service\Health\Indicator\MailerTransport\NullTransport:
+    tags: ['sym_sensor_actuator.health_indicator_mail_transports']
+
+  SymSensor\ActuatorMailerBundle\Service\Health\Indicator\MailerTransport\SmtpTransport:
+    tags: ['sym_sensor_actuator.health_indicator_mail_transports']
+
+  SymSensor\ActuatorMailerBundle\Service\Health\Indicator\Mailer:
+    tags: ['sym_sensor_actuator.health_indicator']
+    arguments:
+      $transports: []
+      $mailerTransportHealthIndicators: !tagged_iterator { tag: sym_sensor_actuator.health_indicator_mail_transports }
+
+  SymSensor\ActuatorMailerBundle\Service\Info\Collector\Mailer:
+    tags: ['sym_sensor_actuator.info_collector']
+    arguments:
+      - []
+
+
