@@ -22,7 +22,6 @@ use Symfony\Component\Mailer\Transport\Transports;
 use SymSensor\ActuatorMailerBundle\Service\Health\Indicator as HealthIndicator;
 use SymSensor\ActuatorMailerBundle\Service\Info\Collector as InfoCollector;
 
-
 final class SymSensorActuatorMailerExtension extends Extension
 {
     /**
@@ -32,14 +31,14 @@ final class SymSensorActuatorMailerExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-        
+
         if (
-            $container->willBeAvailable('symfony/mailer', Transports::class, []) &&
-            $this->isConfigEnabled($container, $config)
+            $container->willBeAvailable('symfony/mailer', Transports::class, [])
+            && $this->isConfigEnabled($container, $config)
         ) {
             $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
             $loader->load('services.yaml');
-            if (isset($config['transports']) && is_array($config['transports'])) {
+            if (isset($config['transports']) && \is_array($config['transports'])) {
                 $transportReferences = [];
                 foreach ($config['transports'] as $name => $currentTransportConfig) {
                     $transportReferences[$name] = new Reference($currentTransportConfig['service']);
