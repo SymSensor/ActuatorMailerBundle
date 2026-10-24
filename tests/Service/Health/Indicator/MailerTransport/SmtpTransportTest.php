@@ -51,7 +51,7 @@ class SmtpTransportTest extends TestCase
      */
     public function supportsSubClassOfSmtpTransport(): void
     {
-        $subClass = new class() extends SmtpTransport {};
+        $subClass = new class extends SmtpTransport {};
 
         self::assertTrue($this->smtpTransportIndicator->supports($subClass));
     }
